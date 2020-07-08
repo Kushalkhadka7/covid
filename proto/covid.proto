@@ -1,0 +1,66 @@
+syntax = "proto3";
+
+package covid;
+
+message CountryResposne{
+    string Country = 1;
+    string CountryCode = 2;
+    string Province = 3;
+    string City = 4;
+    string CityCode = 5;
+    string Lat = 6;
+    string Lon = 7;
+    int64  Confirmed = 8;
+    int64  Deaths = 9;
+    int64  Recovered = 10;
+    int64 Active = 11;
+    string Date = 12;
+
+}
+
+message TotalResponse{
+  string Total = 1;
+  string All = 2;
+  string AllUpdated = 3;
+  string Countries = 4;
+  string CountriesUpdated = 5;
+  string ByCountry = 6;
+  string ByCountryUpdated = 7;
+  string ByCountryLive = 8;
+  string ByCountryLiveUpdated = 9;
+  string ByCountryTotal = 10;
+  string ByCountryTotalUpdated = 11;
+  string DayOne = 12;
+  string DayOneUpdated = 13;
+  string DayOneLive = 14;
+  string DayOneLiveUpdated = 15;
+  string DayOneTotal = 16;
+  string DayOneTotalUpdated = 17;
+  string LiveCountryStatus = 18;
+  string LiveCountryStatusUpdated = 19;
+  string LiveCountryStatusAfterDate = 20;
+  string LiveCountryStatusAfterDateUpdated = 21;
+  string Stats = 22;
+  string StatsUpdated = 23;
+  string Default = 24;
+  string DefaultUpdated = 25;
+  string SubmitWebhook = 26;
+  string SubmitWebhookUpdated = 27;
+  string Summary = 28;
+  string SummaryUpdated = 29;
+}
+
+message CountryResponseList{
+    repeated CountryResposne data = 1;
+}
+
+message Country{
+    string name = 2;
+}
+
+message Void{}
+
+service Covid{
+    rpc CountryData(Country) returns(CountryResponseList) {}
+    rpc TotalData(Void) returns (TotalResponse){}
+}
